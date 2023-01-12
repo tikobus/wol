@@ -1,1 +1,4 @@
-# wol
+
+## Getting started
+
+### Getting Wol Script
