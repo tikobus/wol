@@ -1,0 +1,24 @@
+name: Docker Wol Alpine Amd64
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-wol:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v2.0.0
+        with:
+         registry: ghcr.io
+         username: ${{ github.actor }}
+         password: ${{ secrets.GITHUB_TOKEN }}
+ 
+      - name: Build the Wol Docker image Amd64
+        run: docker build --file alpine/3.16/wol/0.2.1/Dockerfile --tag ghcr.io/${{ github.actor }}/wol:0.2.1-alpine .
+
+      - name: Push the Wol Docker image Amd64
+        run: docker push ghcr.io/${{ github.actor }}/wol:0.2.1-alpine
