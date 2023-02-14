@@ -18,7 +18,7 @@ jobs:
          password: ${{ secrets.GITHUB_TOKEN }}
  
       - name: Build the Wol Docker image Amd64
-        run: docker build --file alpine/3.16/wol/0.2.1/Dockerfile --tag ghcr.io/${{ github.actor }}/wol:0.2.1-alpine .
+        run: docker build --file alpine/3.16/wol/0.2.2/Dockerfile --tag ghcr.io/${{ github.actor }}/wol:0.2.2-alpine .
 
       - name: Push the Wol Docker image Amd64
-        run: docker push ghcr.io/${{ github.actor }}/wol:0.2.1-alpine
+        run: docker push ghcr.io/${{ github.actor }}/wol:0.2.2-alpine
