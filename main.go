@@ -33,7 +33,12 @@ func getPwd() string {
 *  Get Config File Path
  */
 func getConfPath() string {
-	return fmt.Sprintf("%s/%s", getPwd(), "wol.conf")
+	dir, err := os.UserHomeDir()
+	if err != nil {
+		return getPwd()
+	}
+
+	return fmt.Sprintf("%s/%s", dir, "wol.conf")
 }
 
 /**
@@ -87,14 +92,13 @@ func getMacFromArgs(wc []WolConf) string {
 /**
 *  Send Wol Magic Packet
  */
-func sendMagicPacket(hw net.HardwareAddr) {
+func sendMagicPacket(hw []byte) {
 	magicPacket := append(bytes.Repeat([]byte{0xff}, 6), bytes.Repeat(hw, 16)...)
 	conn, err := net.Dial("udp", "255.255.255.255:9")
 	if err != nil {
 		return
 	}
 
-	fmt.Printf("Sending Magic Packet To %s \n", hw.String())
 	conn.Write(magicPacket)
 	conn.Close()
 }
