@@ -38,7 +38,7 @@ func getConfPath() string {
 		return getPwd()
 	}
 
-	return fmt.Sprintf("%s/%s", dir, "wol.conf")
+	return fmt.Sprintf("%s/%s", dir, ".wol.conf")
 }
 
 /**
