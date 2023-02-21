@@ -1,5 +1,5 @@
 FROM alpine:3.16.2 AS build
-ENV WOL_VERSION 8.4.3
+ENV WOL_VERSION 0.2.4
 RUN apk add go git
 
 # Install Wol
